@@ -6,11 +6,11 @@ import { User } from './classes/user';
 import { Affectation } from './classes/affectation';
 import { Pc } from './classes/pc';
 import { Vpn } from './classes/vpn';
-const urlGestionnaire="http://localhost:3000/gestionnaire";
-const urlUser="http://localhost:3000/user";
-const urlAffectation="http://localhost:3000/affectation";
-const urlPc="http://localhost:3000/pc";
-const urlVpn="http://localhost:3000/vpn";
+const urlGestionnaire="gestionnaire";
+const urlUser="/user";
+const urlAffectation="/affectation";
+const urlPc="/pc";
+const urlVpn="/vpn";
 @Injectable({
   providedIn: 'root'
 })
