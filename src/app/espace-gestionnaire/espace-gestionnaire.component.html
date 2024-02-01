@@ -1,0 +1,18 @@
+<form #ff="ngForm" (ngSubmit)="onSubmit(ff.value)" >
+    <div class="form-group m-5">
+        <legend>Bienvenue à l'espace Gestionnaire</legend>
+        <div class="form-group">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" name="email" ngModel
+                    placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password"
+                    ngModel>
+                <label for="floatingPassword">Password</label>
+            </div>
+            <button type="submit" class="btn btn-success mt-3">Se Connecter</button>
+        </div>
+    </div>   
+</form>

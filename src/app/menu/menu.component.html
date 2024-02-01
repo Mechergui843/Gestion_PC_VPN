@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="https://www.maghrebia.com.tn/"><img src="https://ween.tn/uploads/image/69760/63884/avatar/avatar.jpg" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="actif" routerLink="/Espace_User" *ngIf="gSer.logAccount == null">Espace User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="actif" routerLink="/Espace_Gestionnaire" *ngIf="gSer.logAccount == null">Espace Gestionnaire</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="actif" routerLink="/Gestion_Pc" *ngIf="gSer.logAccount!= null && gSer.etat == 'gestionnaire' && gSer.etat != 'user'">Stock Pc</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="actif" routerLink="Demande_Pc"  *ngIf="gSer.logAccount!= null && gSer.etat == 'gestionnaire' && gSer.etat != 'user'">Demande Pc</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="actif" routerLink="Demande_vpn" *ngIf="gSer.logAccount!= null && gSer.etat == 'gestionnaire' && gSer.etat != 'user'">Demande VPN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="actif" routerLink="/Gestion_User" *ngIf="gSer.logAccount!= null && gSer.etat == 'gestionnaire' && gSer.etat != 'user'">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="actif" routerLink="Prolongation_Pc"  *ngIf="gSer.logAccount!= null && gSer.etat == 'gestionnaire' && gSer.etat != 'user'">Demande Prolongation Pc</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="actif" routerLink="Prolongation_vpn"  *ngIf="gSer.logAccount!= null && gSer.etat == 'gestionnaire' && gSer.etat != 'user'">Demande Prolongation VPN</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="actif" routerLink="/Mon_Espace" *ngIf="gSer.logAccount!= null && gSer.etat != 'gestionnaire' && gSer.etat == 'user'">Mon Espace</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="actif" *ngIf="gSer.logAccount != null" (click)="logout()" >LogOut</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

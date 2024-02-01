@@ -1,0 +1,48 @@
+<div *ngIf="this.user.refusePc!=''">
+    <h2>A Propos Votre Demande De Pc : </h2>
+    <p>{{this.user.refusePc}}</p><input type="button" value="Supprimer" class="btn btn-primary mr-5" (click)="onSupprime(this.user.refusePc)">
+</div>
+<hr>
+<div *ngIf="this.user.refuseVpn!=''">
+    <h2>A Propos Votre Demande D'Avoir Un Accés Vpn : </h2>
+    <p>{{this.user.refuseVpn}}</p><input type="button" value="Supprimer" class="btn btn-primary mr-5" (click)="onSupprime(this.user.refuseVpn)">
+</div>
+<hr>
+<table class=" table table-stripped" *ngIf="pc!=null">
+    <thead>
+        <th scope="col">ID</th>
+        <th scope="col">Modéle</th>
+        <th scope="col">Ram</th>
+        <th scope="col">Stockage</th>
+        <th scope="col">Processeur</th>
+        <th scope="col">Disponibilité</th>
+        <th scope="col">Action</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row">{{pc.id}}</td>
+            <td>{{pc.modele}}</td>
+            <td>{{pc.ram}} Go</td>
+            <td>{{pc.stockage}} Go</td>
+            <td>{{pc.processeur}}</td>
+            <td>{{pc.date_fin}}</td>
+            <td><button class="btn btn-success btn-sm m-2" [disabled]="prolonge" (click)="onProlonge()" >Demander une Prolongation </button>
+                <button class="btn btn-primary btn-sm" (click)="onUpdate()" [disabled]="update">Pc a besoin d'une Mise à Jour</button></td>
+        </tr>
+    </tbody>
+</table>
+<table class=" table table-stripped" *ngIf="this.user.vpn">
+    <thead>
+    <th scope="col">Accés VPN</th>
+    <th scope="col">Disponible Jusqu'à</th>
+    </thead>
+    <tbody>
+    <tr>
+        <td scope="row">{{this.user.vpn? 'Oui' : 'Non'}}</td>
+        <td>{{this.user.date_fin}}</td>
+        <td><button class="btn btn-success btn-sm m-2" [disabled]="prolongeVPN" (click)="onProlongeVPN()">Demander une Prolongation </button></td>
+    </tr>
+</tbody>
+</table>
+<button class="btn btn-success btn-sm m-2" [disabled]="demandePc" (click)="onDemandePC()">Demander un Pc </button>
+<button class="btn btn-success btn-sm m-2" [disabled]="demandeVPN" (click)="onDemandeVPN()">Demander un accés VPN </button>

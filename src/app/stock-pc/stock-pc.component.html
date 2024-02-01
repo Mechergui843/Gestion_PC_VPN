@@ -1,0 +1,28 @@
+<table class=" table table-stripped">
+    <thead>
+        <th scope="col">ID</th>
+        <th scope="col">Modéle</th>
+        <th scope="col">Ram</th>
+        <th scope="col">Stockage</th>
+        <th scope="col">Processeur</th>
+        <th scope="col">Besoin de MAJ</th>
+        <th scope="col">Disponibilité</th>
+        <th scope="col">Action</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of lesPc">
+            <td scope="row">{{i.id}}</td>
+            <td>{{i.modele}}</td>
+            <td>{{i.ram}} Go</td>
+            <td>{{i.stockage}} Go</td>
+            <td>{{i.processeur}}</td>
+            <td>{{i.update? 'Oui' : 'Non'}}</td>
+            <td>{{i.dispo ? 'Oui' : 'Non'}}</td>
+            <td><button class="btn btn-danger btn-sm" (click)="onDeletePc(i)">Supprimer</button>
+                <button class="btn btn-primary btn-sm m-2" (click)="onModifie(i)">Modifier</button>
+                <button class="btn btn-success btn-sm" (click)="onMAJ(i)">Mettre A Jour</button></td>
+        </tr>
+    </tbody>
+</table>
+<button type="submit" (click)="onAjout()" class="btn btn-success m-3">Ajouter un PC</button>
+<app-pc-modifie *ngIf="fc"></app-pc-modifie>

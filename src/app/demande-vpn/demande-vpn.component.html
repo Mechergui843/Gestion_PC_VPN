@@ -1,0 +1,25 @@
+<div *ngIf="demande.length>0;else bloc">
+<table class=" table table-stripped">
+    <thead>
+        <th scope="col">ID</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col" *ngIf="dispo">Jusqu'à </th>
+        <th scope="col">Action</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of demande">
+            <td scope="row">{{i.id}}</td>
+            <td>{{i.nom}}</td>
+            <td>{{i.prenom}}</td>
+            <td *ngIf="dispo"><input type="date" [(ngModel)]="date_fin"></td>
+            <td><button class="btn btn-danger btn-sm " (click)="onRefuse(i)">Refuser la Demande </button>
+                <button class="btn btn-success btn-sm m-2" (click)="onAccepte(i)" >Donner l'acces</button>
+                <button class="btn btn-primary btn-sm" (click)="onAjoute()" >Choisir la date</button></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<ng-template #bloc>
+    <h1>Pas De Demandes De VPN!</h1>
+</ng-template>

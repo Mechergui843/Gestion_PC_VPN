@@ -1,0 +1,26 @@
+<table class=" table table-stripped">
+    <thead>
+        <th scope="col">Ncin</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Email</th>
+        <th scope="col">ID_PC</th>
+        <th scope="col">Accés VPN</th>        
+        <th scope="col">Action</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of lesUsers">
+            <td scope="row">{{i.numeroCarteIdentite}}</td>
+            <td>{{i.nom}}</td>
+            <td>{{i.prenom}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.id_pc==0 ? "pas de pc": i.id_pc}}</td>
+            <td>{{i.vpn ? "Oui" :"Non"}}</td>
+            <td><button class="btn btn-danger btn-sm m-2" (click)="onDeleteUser(i)">Supprimer</button>
+                <button class="btn btn-primary btn-sm" (click)="onModifie(i)">Modifier</button></td>
+                
+        </tr>
+    </tbody>
+</table>
+<button type="submit" (click)="onAjout()" class="btn btn-success m-3">Ajouter un Utilisateur</button>
+<app-users-modifie *ngIf="fc"></app-users-modifie>

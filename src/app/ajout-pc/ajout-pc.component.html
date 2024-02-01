@@ -1,0 +1,17 @@
+<form #ff="ngForm" (ngSubmit)="onAjout(ff.value)">
+    <label for="modele">Modele:</label><br>
+    <input type="text" id="modele" name="modele" class="form-control" placeholder="Lenovo ThinkPad" ngModel><br>
+
+    <label for="ram">Ram:</label><br>
+    <input type="number" id="ram" name="ram" class="form-control" placeholder="Ex : 8" ngModel><br>
+
+    <label for="stockage">Stockage:</label><br>
+    <input type="number" id="stockage" name="stockage" class="form-control"
+        placeholder="1024" ngModel><br>
+
+    <label for="processeur">Processeur:</label><br>
+    <input type="text" id="processeur" name="processeur" class="form-control" placeholder="Intel Core i5" ngModel><br>
+
+    <input type="submit" class="btn btn-success m-3" value="Enregistrer">
+    <input type="button" class="btn btn-danger" value="Annuler" routerLink="/Gestion_Pc">
+</form>
