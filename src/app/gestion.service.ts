@@ -3,14 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Gestionnaire } from './classes/gestionnaire';
 import { User } from './classes/user';
-import { Affectation } from './classes/affectation';
 import { Pc } from './classes/pc';
-import { Vpn } from './classes/vpn';
 const urlGestionnaire="http://localhost:3000/gestionnaire";
 const urlUser="http://localhost:3000/user";
-const urlAffectation="http://localhost:3000/affectation";
 const urlPc="http://localhost:3000/pc";
-const urlVpn="http://localhost:3000/vpn";
 @Injectable({
   providedIn: 'root'
 })
@@ -66,9 +62,5 @@ export class GestionService {
   createPc(pc:Pc): Observable<Pc> {
     return this.http.post<Pc>(urlPc,pc);
   }
-
-  getVpn():Observable<Vpn[]>
-  { return this.http.get<Vpn[]>(urlVpn);
-  };
 
 }
