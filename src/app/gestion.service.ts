@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { Gestionnaire } from './classes/gestionnaire';
 import { User } from './classes/user';
 import { Pc } from './classes/pc';
+<<<<<<< HEAD
 import { AffectationPc } from './classes/affectation-pc';
 import { AffectationVpn } from './classes/affectation-vpn';
 import { DemandePc } from './classes/demande-pc';
@@ -23,6 +24,12 @@ const urlDemandeProlongePc="http://localhost:3000/demande_prolonge_pc"
 const urlDemandeProlongeVpn=" http://localhost:3000/demande_prolonge_vpn"
 const urlHistAffPc="http://localhost:3000/historique_affectation_pc";
 const urlHistAffVpn="http://localhost:3000/historique_affectation_vpn";
+=======
+import { Vpn } from './classes/vpn';
+const urlGestionnaire="/gestionnaire";
+const urlUser="/user";
+const urlPc="/pc";
+>>>>>>> 88c2da9ca274f5071932cacc36e165587765da42
 @Injectable({
   providedIn: 'root'
 })
