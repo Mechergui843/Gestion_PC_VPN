@@ -2,23 +2,59 @@
 <div *ngIf="demande.length>0 ;else bloc"> 
 <table class=" table table-stripped">
     <thead>
-        <th scope="col">ID</th>
+        <th scope="col">ID_Demande</th>
         <th scope="col">Nom</th>
         <th scope="col">Prenom</th>
+        <th scope="col">Date Demande</th>
         <th scope="col">Action</th>
     </thead>
     <tbody>
         <tr *ngFor="let i of demande">
             <td scope="row">{{i.id}}</td>
-            <td>{{i.nom}}</td>
-            <td>{{i.prenom}}</td>
+            <td>{{i.nom_user}}</td>
+            <td>{{i.prenom_user}}</td>
+            <td>{{i.date_demande}}</td>
             <td><button class="btn btn-danger btn-sm m-2" (click)="onRefuse(i)">Refuser la Demande </button>
-                <button class="btn btn-primary btn-sm" (click)="onAffecter(i)" >Affecter un Pc</button></td>
+                <button class="btn btn-primary btn-sm"  (click)="openAjout(i)">Affecter un Pc</button></td>
         </tr>
     </tbody>
 </table>
-<app-affecte-pc *ngIf="fc"></app-affecte-pc>
 </div>
 <ng-template #bloc>
     <h1>Pas De Demandes De PCs!</h1>
 </ng-template>
+
+
+
+
+<ng-template #pop let-modal>
+          
+    <div class="modal-content">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h1 class="fw-bold mb-0 fs-2">Ajouter une nouvelle Affectation de Pc :</h1>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+    
+      <div class="modal-body p-5 pt-0">
+  
+        <form [formGroup]="popform" (ngSubmit)="onSubmit()">
+
+            <label for="id_user" class="form-label mt-3">Id Utilisateur</label>
+            <input type="number" class="form-control" id="id_user" name="id_user" formControlName="id_user" readonly >
+
+            <label for="id_pc" class="form-label mt-3">Pc à Affecté</label><br>
+            <select name="id_pc" id="id_pc" class="form-control" formControlName="id_pc">
+                <option value="" ></option>
+            <option *ngFor="let i of lesPcs" [value]="i.id"> {{i.modele}} </option>
+
+            </select>
+            
+  
+          <input type="submit" class="btn btn-success m-3" value="Enregistrer" [disabled]="popform.invalid">
+          <input type="button" class="btn btn-secondary" value="Annuler" (click)="modal.close()">
+  
+      </form>
+  
+      </div>
+    </div> 
+  </ng-template>

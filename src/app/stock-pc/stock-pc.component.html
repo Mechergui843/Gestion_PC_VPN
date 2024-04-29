@@ -20,9 +20,93 @@
             <td>{{i.dispo ? 'Oui' : 'Non'}}</td>
             <td><button class="btn btn-danger btn-sm" (click)="onDeletePc(i)">Supprimer</button>
                 <button class="btn btn-primary btn-sm m-2" (click)="onModifie(i)">Modifier</button>
-                <button class="btn btn-success btn-sm" (click)="onMAJ(i)">Mettre A Jour</button></td>
+                <button class="btn btn-success btn-sm" [disabled]="!i.update" (click)="onMAJ(i)">Mettre A Jour</button></td>
         </tr>
     </tbody>
 </table>
-<button type="submit" (click)="onAjout()" class="btn btn-success m-3">Ajouter un PC</button>
-<app-pc-modifie *ngIf="fc"></app-pc-modifie>
+
+<input type="button" value="Ajouter Un PC" (click)="openAjout()"  class="btn btn-primary">
+
+
+<ng-template #pop let-modal>
+          
+    <div class="modal-content">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h1 class="fw-bold mb-0 fs-2">Modifier un Pc :</h1>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+    
+      <div class="modal-body p-5 pt-0">
+  
+        <form [formGroup]="popform" (ngSubmit)="onSubmit()">
+            <label for="id">ID:</label><br>
+            <input type="text" id="id" name="id" formControlName="id" class="form-control" readonly >
+
+            <label for="modele" class="form-label mt-3">Modele:</label><br>
+            <input type="text" id="modele" name="modele" class="form-control" formControlName="modele" >
+
+            <label for="ram" class="form-label mt-3">ram:</label><br>
+            <input type="text" id="ram" name="ram" class="form-control" formControlName="ram" >
+
+            <label for="stockage" class="form-label mt-3"> stockage:</label><br>
+            <input type="number" id="stockage" name="stockage" formControlName="stockage" class="form-control" >
+                
+            <label for="processeur" class="form-label mt-3">processeur:</label><br>
+            <input type="text" id="processeur" name="processeur" class="form-control" formControlName="processeur" >
+  
+          <input type="submit" class="btn btn-success m-3" value="Enregistrer" [disabled]="popform.invalid">
+          <input type="button" class="btn btn-secondary" value="Annuler" (click)="modal.close()">
+  
+      </form>
+  
+      </div>
+    </div> 
+  </ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <ng-template #pop1 let-modal>
+          
+    <div class="modal-content">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h1 class="fw-bold mb-0 fs-2">Ajouter un nouveau Pc :</h1>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+    
+      <div class="modal-body p-5 pt-0">
+  
+        <form [formGroup]="popform1" (ngSubmit)="onAjout()">
+
+            <label for="id">ID:</label><br>
+            <input type="text" id="id" name="id" formControlName="id" class="form-control" readonly >
+
+            <label for="modele" class="form-label mt-3">Modele:</label><br>
+            <input type="text" id="modele" name="modele" class="form-control" formControlName="modele" >
+
+            <label for="ram" class="form-label mt-3">ram:</label><br>
+            <input type="text" id="ram" name="ram" class="form-control" formControlName="ram" >
+
+            <label for="stockage" class="form-label mt-3"> stockage:</label><br>
+            <input type="number" id="stockage" name="stockage" formControlName="stockage" class="form-control" >
+                
+            <label for="processeur" class="form-label mt-3">processeur:</label><br>
+            <input type="text" id="processeur" name="processeur" class="form-control" formControlName="processeur" >
+  
+          <input type="submit" class="btn btn-success m-3" value="Enregistrer" [disabled]="popform1.invalid">
+          <input type="button" class="btn btn-secondary" value="Annuler" (click)="modal.close()">
+  
+      </form>
+  
+      </div>
+    </div> 
+  </ng-template>

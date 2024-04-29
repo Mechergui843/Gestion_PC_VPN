@@ -5,26 +5,34 @@
       "nom": "mechergui",
       "prenom": "med-aziz",
       "email": "mechergui@aziz.com",
-      "numeroCarteIdentite": "123456789",
-      "motDePasse": "azayez123",
-      "u_demande_pc": [],
-      "u_demande_vpn": [],
-      "u_prolonge_pc": [],
-      "u_prolonge_vpn": []
+      "numeroCarteIdentite": "125456789",
+      "motDePasse": "azayez123"
+    },
+    {
+      "id": 2,
+      "nom": "mechergui",
+      "prenom": "Saber",
+      "email": "mechergui@saber.com",
+      "numeroCarteIdentite": "223456789",
+      "motDePasse": "saber123"
+    },
+    {
+      "id": 3,
+      "nom": "taboubi",
+      "prenom": "rawen",
+      "email": "taboubi@rawen.com",
+      "numeroCarteIdentite": "103456789",
+      "motDePasse": "rawen123"
     }
   ],
   "user": [
     {
       "id": 1,
       "nom": "Ahmed",
-      "prenom": "Layla",
       "email": "ahmed.layla@example.com",
-      "date_deb": "2024-04-01",
-      "date_fin": "2024-05-01",
-      "vpn": false,
-      "numeroCarteIdentite": "777788889",
+      "prenom": "Layla",
+      "numeroCarteIdentite": "777788880",
       "motDePasse": "layla123",
-      "id_pc": 0,
       "refuseVpn": "",
       "refusePc": ""
     },
@@ -33,26 +41,8 @@
       "nom": "Khalid",
       "prenom": "Amina",
       "email": "khalid.amina@example.com",
-      "date_deb": "2024-02-15",
-      "date_fin": "2024-03-15",
-      "vpn": false,
-      "numeroCarteIdentite": "555566667",
+      "numeroCarteIdentite": "555566660",
       "motDePasse": "khalid567",
-      "id_pc": 0,
-      "refuseVpn": "",
-      "refusePc": ""
-    },
-    {
-      "id": 3,
-      "nom": "Al-Farsi",
-      "prenom": "Ahmed",
-      "email": "ahmed.alfarsi@example.com",
-      "date_deb": "",
-      "date_fin": "",
-      "vpn": false,
-      "numeroCarteIdentite": "777788889",
-      "motDePasse": "ahmed123",
-      "id_pc": 0,
       "refuseVpn": "",
       "refusePc": ""
     },
@@ -61,12 +51,8 @@
       "nom": "Khalid",
       "prenom": "Fatima",
       "email": "fatima.khalid@example.com",
-      "date_deb": "",
-      "date_fin": "",
-      "vpn": false,
-      "numeroCarteIdentite": "999900001",
+      "numeroCarteIdentite": "999900009",
       "motDePasse": "fatima456",
-      "id_pc": 0,
       "refuseVpn": "",
       "refusePc": ""
     },
@@ -75,12 +61,8 @@
       "nom": "Abdallah",
       "prenom": "Layla",
       "email": "layla.abdallah@example.com",
-      "date_deb": "",
-      "date_fin": "",
-      "vpn": false,
       "numeroCarteIdentite": "111122223",
       "motDePasse": "layla789",
-      "id_pc": 0,
       "refuseVpn": "",
       "refusePc": ""
     },
@@ -89,26 +71,18 @@
       "nom": "Ibrahim",
       "prenom": "Nour",
       "email": "nour.ibrahim@example.com",
-      "date_deb": "",
-      "date_fin": "",
-      "vpn": false,
       "numeroCarteIdentite": "333344445",
       "motDePasse": "nour123",
-      "id_pc": 0,
       "refuseVpn": "",
-      "refusePc": ""
+      "refusePc": "Votre Demande De PC est Refusé car : null"
     },
     {
       "id": 7,
       "nom": "Hamza",
       "prenom": "Amina",
       "email": "amina.hamza@example.com",
-      "date_deb": "",
-      "date_fin": "",
-      "vpn": false,
       "numeroCarteIdentite": "555566667",
       "motDePasse": "amina456",
-      "id_pc": 0,
       "refuseVpn": "",
       "refusePc": ""
     },
@@ -117,12 +91,8 @@
       "nom": "Said",
       "prenom": "Hana",
       "email": "hana.said@example.com",
-      "date_deb": "",
-      "date_fin": "",
-      "vpn": false,
       "numeroCarteIdentite": "777788889",
       "motDePasse": "hana789",
-      "id_pc": 0,
       "refuseVpn": "",
       "refusePc": ""
     },
@@ -131,26 +101,159 @@
       "nom": "Karim",
       "prenom": "Lina",
       "email": "lina.karim@example.com",
-      "date_deb": "",
-      "date_fin": "",
-      "vpn": false,
       "numeroCarteIdentite": "999900001",
       "motDePasse": "lina456",
-      "id_pc": 0,
       "refuseVpn": "",
       "refusePc": ""
+    }
+  ],
+  "affectation_pc": [
+    {
+      "id": 1,
+      "id_pc": 2,
+      "id_user": 9,
+      "date_debut": "2024-04-29",
+      "date_fin": "2024-05-29"
+    }
+  ],
+  "affectation_vpn": [
+    {
+      "id": 1,
+      "id_user": 9,
+      "date_debut": "2024-04-29",
+      "date_fin": "2024-05-29"
+    }
+  ],
+  "demande_pc": [
+    {
+      "id": 1,
+      "id_user": 9,
+      "nom_user": "Karim",
+      "prenom_user": "Lina",
+      "date_demande": "2024-04-29"
+    }
+  ],
+  "demande_vpn": [],
+  "demande_prolonge_pc": [],
+  "demande_prolonge_vpn": [],
+  "historique_affectation_vpn": [
+    {
+      "id": 1,
+      "id_user": 9,
+      "date_debut": "2024-03-26",
+      "date_fin": "2024-04-26"
+    },
+    {
+      "id": 2,
+      "id_user": 3,
+      "date_debut": "2024-02-26",
+      "date_fin": "2024-03-26"
+    },
+    {
+      "id": 3,
+      "id_user": 4,
+      "date_debut": "2024-01-15",
+      "date_fin": "2024-02-15"
+    },
+    {
+      "id": 4,
+      "id_user": 8,
+      "date_debut": "2024-01-28",
+      "date_fin": "2024-02-28"
+    },
+    {
+      "id": 1,
+      "id_user": 3,
+      "date_debut": "2024-04-28",
+      "date_fin": "2024-04-28"
+    },
+    {
+      "id": 5,
+      "id_user": 9,
+      "date_debut": "2024-04-29",
+      "date_fin": "2024-05-29"
+    }
+  ],
+  "historique_affectation_pc": [
+    {
+      "id": 1,
+      "id_user": 1,
+      "id_pc": 8,
+      "date_debut": "2024-01-26",
+      "date_fin": "2024-02-26"
+    },
+    {
+      "id": 2,
+      "id_user": 2,
+      "id_pc": 1,
+      "date_debut": "2024-03-26",
+      "date_fin": "2024-04-26"
+    },
+    {
+      "id": 3,
+      "id_user": 3,
+      "id_pc": 3,
+      "date_debut": "2024-01-26",
+      "date_fin": "2024-02-26"
+    },
+    {
+      "id": 4,
+      "id_user": 4,
+      "id_pc": 7,
+      "date_debut": "2024-01-28",
+      "date_fin": "2024-02-28"
+    },
+    {
+      "id": 5,
+      "id_user": 5,
+      "id_pc": 2,
+      "date_debut": "2024-02-26",
+      "date_fin": "2024-03-26"
+    },
+    {
+      "id": 6,
+      "id_pc": 7,
+      "id_user": 4,
+      "date_debut": "2024-03-28",
+      "date_fin": "2024-04-28"
+    },
+    {
+      "id": 7,
+      "id_pc": 1,
+      "id_user": 3,
+      "date_debut": "2024-03-23",
+      "date_fin": "2024-04-23"
+    },
+    {
+      "id": 8,
+      "id_pc": 1,
+      "id_user": 6,
+      "date_debut": "2024-03-27",
+      "date_fin": "2024-04-27"
+    },
+    {
+      "id": 9,
+      "id_pc": 1,
+      "id_user": 3,
+      "date_debut": "2024-04-28",
+      "date_fin": "2024-05-28"
+    },
+    {
+      "id": 10,
+      "id_pc": 2,
+      "id_user": 9,
+      "date_debut": "2024-04-29",
+      "date_fin": "2024-05-29"
     }
   ],
   "pc": [
     {
       "id": 1,
       "modele": "HP Pavillon",
-      "ram": 16,
+      "ram": 20,
       "stockage": 512,
       "processeur": "AMD Ryzen 5",
-      "dispo": true,
-      "date_deb": "",
-      "date_fin": "",
+      "dispo": false,
       "update": false
     },
     {
@@ -159,9 +262,7 @@
       "ram": 8,
       "stockage": 1024,
       "processeur": "AMD Ryzen 7",
-      "dispo": true,
-      "date_deb": "",
-      "date_fin": "",
+      "dispo": false,
       "update": false
     },
     {
@@ -171,8 +272,6 @@
       "stockage": 256,
       "processeur": "Intel Core i7",
       "dispo": true,
-      "date_deb": "",
-      "date_fin": "",
       "update": false
     },
     {
@@ -182,8 +281,6 @@
       "stockage": 1024,
       "processeur": "AMD Ryzen 7",
       "dispo": true,
-      "date_deb": "",
-      "date_fin": "",
       "update": false
     },
     {
@@ -193,8 +290,6 @@
       "stockage": 512,
       "processeur": "Intel Core i9",
       "dispo": true,
-      "date_deb": "",
-      "date_fin": "",
       "update": false
     },
     {
@@ -204,8 +299,6 @@
       "stockage": 1024,
       "processeur": "AMD Ryzen 9",
       "dispo": true,
-      "date_deb": "",
-      "date_fin": "",
       "update": false
     },
     {
@@ -215,8 +308,6 @@
       "stockage": 512,
       "processeur": "Intel Core i9",
       "dispo": true,
-      "date_deb": "",
-      "date_fin": "",
       "update": false
     },
     {
@@ -226,8 +317,6 @@
       "stockage": 256,
       "processeur": "AMD Ryzen 9",
       "dispo": true,
-      "date_deb": "",
-      "date_fin": "",
       "update": false
     }
   ]

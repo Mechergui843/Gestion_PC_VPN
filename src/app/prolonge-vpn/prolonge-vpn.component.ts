@@ -5,6 +5,7 @@ import { User } from '../classes/user';
 import { DatePipe } from '@angular/common';
 import { Pc } from '../classes/pc';
 import { Router } from '@angular/router';
+import { AffectationVpn } from '../classes/affectation-vpn';
 
 @Component({
   selector: 'app-prolonge-vpn',
@@ -13,10 +14,10 @@ import { Router } from '@angular/router';
 })
 export class ProlongeVpnComponent implements OnInit{
 gestionnaire!:Gestionnaire
-lesDemandes:User[]=[]
-date_fin!:string;
-dispo=false;
-x:any
+date_fin!:any;
+d:any
+lesDemandes:any[]=[]
+users:any[]=[];
   constructor(private vServ:GestionService,private date:DatePipe,private router:Router){}
 
   ngOnInit(): void {
@@ -25,70 +26,53 @@ x:any
         this.router.navigate(["/Espace_Gestionnaire"]);
       }
     }else{this.router.navigate(["/Espace_Gestionnaire"]);}
-    this.vServ.getGestionnaireById(Number(localStorage.getItem('id')))
-      .subscribe(
-        data => {
-          this.gestionnaire = data;
-          
-          this.gestionnaire.u_prolonge_vpn.forEach((element:any) => {
-            this.vServ.getUserById(element).subscribe(
-              data=>{
-              this.lesDemandes.push(data);
-              
-              }
-            )
-            
-          });
-        }
-      );
-      console.log(this.lesDemandes)
+
+    this.vServ.getGestionnaireById(Number(localStorage.getItem('id'))).subscribe(
+      data => {this.gestionnaire = data;})
+
+      this.vServ.getDemandeProlongeVpn().subscribe(
+        data => {this.lesDemandes = data;})
+
+      this.vServ.getUsers().subscribe(
+        data => {this.users = data;})
       
   }
 
-  onRefuse(u:User){
-    this.gestionnaire.u_prolonge_vpn=this.gestionnaire.u_prolonge_vpn.filter((id:any)=>id!=u.id);
-    this.lesDemandes=this.lesDemandes.filter((us:any)=>us.id!=u.id)
-    this.vServ.cModifier=this.gestionnaire;
-    this.vServ.modifyGestionnaire(this.vServ.cModifier).subscribe(
-        res=>{})
-    
+  onRefuse(u:any){
+    this.vServ.deleteDemandeProlongeVpn(u.id).subscribe(res=>{
+      alert("deleted")
+    })
+    this.ngOnInit();
   }
 
-  onAjoute(){
-    this.dispo=true;
+  onAccepte(u: any) {
+    const today = new Date();
+    this.date_fin = new Date(today.getTime() + 15 * 24 * 60 * 60 * 1000);
+    this.date_fin = this.date.transform(this.date_fin, "yyyy-MM-dd") || "";
+  
+    this.vServ.getAffectationsVpn().subscribe(res => {
+      this.d = res.find(data => data.id_user === u.id_user); // Use find instead of filter
+      console.log(this.d);
+  
+      if (this.d != null) {
+        this.d.date_fin = this.date_fin;
+        this.vServ.modifyAffectationVpn(this.d).subscribe(
+          res => { alert("demande de prolongation d'accés accepté"); this.ngOnInit()}
+        );
+      } else {
+        const dvpn = new AffectationVpn(0, u.id_user, this.date.transform(new Date(), "yyyy-MM-dd") || "", this.date_fin);
+        this.vServ.createAffectationVpn(dvpn).subscribe(
+          res => {  }
+        );
+      }
+  
+      this.vServ.deleteDemandeProlongeVpn(u.id).subscribe(res => {
+        alert("deleted");
+        this.ngOnInit(); // Move ngOnInit inside the delete subscription callback
+      });
+    });
   }
-
-  onAccepte(u:User){
-    if(this.date_fin==null){
-      alert("choisir une date pour la fin d'acces d'abord");
-    return 
-    }
-    let aa=this.date.transform(new Date(), 'yyyy-MM-dd')
-  if(aa!=null)
-  this.x=this.date.transform(this.date_fin,"yyyy-MM-dd") || "";
-    let today=new Date();
-    let finalDay=new Date(this.x)
-    if(finalDay.getTime()<=today.getTime())
-    {
-      alert("Veuillez Choisir une Date Valide");
-      return;
-    }
-    let timeDiff=  finalDay.getTime()-today.getTime();
-    let daysDiff=timeDiff/(1000*60*60*24);
-    if(daysDiff>30){
-      alert("vous ne pouvez pas prolonger un accés pour plus que 30 jours");
-      return
-    }
-    u.date_fin=this.date.transform(this.date_fin,"yyyy-MM-dd") || "";
-    this.vServ.cModifier=u;
-    this.vServ.modifyUser(this.vServ.cModifier).subscribe(
-      res=>{}
-    )
-    this.gestionnaire.u_prolonge_vpn=this.gestionnaire.u_prolonge_vpn.filter((id:any)=>id!=u.id);
-    this.vServ.cModifier=this.gestionnaire;
-    this.vServ.modifyGestionnaire(this.vServ.cModifier).subscribe()
-    
-}
+  
 
 
 

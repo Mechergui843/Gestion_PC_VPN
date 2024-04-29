@@ -4,19 +4,15 @@ export class Pc {
     ram:number;
     stockage:number;
     processeur:string;
-    date_deb:string;
-    date_fin:string;
     dispo:boolean
     update:boolean
-    constructor(id:number,modele:string,ram:number,stockage:number,processeur:string,dispo:boolean,date_d:string,date_f:string,upd:boolean){
+    constructor(id:number,modele:string,ram:number,stockage:number,processeur:string,dispo:boolean,upd:boolean){
         this.id=id;
         this.modele=modele;
         this.ram=ram;
         this.stockage=stockage;
         this.processeur=processeur;
         this.dispo=dispo;
-        this.date_deb=date_d;
-        this.date_fin=date_f;
         this.update=upd
     }
 }

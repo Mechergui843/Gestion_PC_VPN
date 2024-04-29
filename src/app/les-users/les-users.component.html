@@ -3,9 +3,7 @@
         <th scope="col">Ncin</th>
         <th scope="col">Nom</th>
         <th scope="col">Prenom</th>
-        <th scope="col">Email</th>
-        <th scope="col">ID_PC</th>
-        <th scope="col">Accés VPN</th>        
+        <th scope="col">Email</th>       
         <th scope="col">Action</th>
     </thead>
     <tbody>
@@ -14,13 +12,100 @@
             <td>{{i.nom}}</td>
             <td>{{i.prenom}}</td>
             <td>{{i.email}}</td>
-            <td>{{i.id_pc==0 ? "pas de pc": i.id_pc}}</td>
-            <td>{{i.vpn ? "Oui" :"Non"}}</td>
             <td><button class="btn btn-danger btn-sm m-2" (click)="onDeleteUser(i)">Supprimer</button>
                 <button class="btn btn-primary btn-sm" (click)="onModifie(i)">Modifier</button></td>
                 
         </tr>
     </tbody>
 </table>
-<button type="submit" (click)="onAjout()" class="btn btn-success m-3">Ajouter un Utilisateur</button>
-<app-users-modifie *ngIf="fc"></app-users-modifie>
+<input type="button" value="Ajouter Un Utilisateur" (click)="openAjout()"  class="btn btn-primary">
+
+
+<ng-template #pop let-modal>
+          
+    <div class="modal-content">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h1 class="fw-bold mb-0 fs-2">Modifier un Utilisateur :</h1>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+    
+      <div class="modal-body p-5 pt-0">
+  
+        <form [formGroup]="popform" (ngSubmit)="onSubmit()">
+          <label for="id">ID:</label><br>
+            <input type="text" id="id" name="id" formControlName="id" class="form-control" readonly >
+
+            <label for="nom" class="form-label mt-3">Nom:</label><br>
+            <input type="text" id="nom" name="nom" class="form-control" formControlName="nom" >
+
+            <label for="prenom" class="form-label mt-3">Prenom:</label><br>
+            <input type="text" id="prenom" name="prenom" class="form-control" formControlName="prenom" >
+
+            <label for="email" class="form-label mt-3"> Email:</label><br>
+            <input type="email" id="email" name="email" formControlName="email" class="form-control" >
+                
+            <label for="numeroCarteIdentite" class="form-label mt-3">numéro Carte Identite:</label><br>
+            <input type="text" id="numeroCarteIdentite" name="numeroCarteIdentite" class="form-control" formControlName="numeroCarteIdentite" >
+
+            <label for="motDePasse" class="form-label mt-3">motDePasse</label>
+            <input type="password" class="form-control" id="motDePasse" name="motDePasse" formControlName="motDePasse" >
+  
+          <input type="submit" class="btn btn-success m-3" value="Enregistrer" [disabled]="popform.invalid">
+          <input type="button" class="btn btn-secondary" value="Annuler" (click)="modal.close()">
+  
+      </form>
+  
+      </div>
+    </div> 
+  </ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <ng-template #pop1 let-modal>
+          
+    <div class="modal-content">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h1 class="fw-bold mb-0 fs-2">Ajouter un Nouveau Utilisateur :</h1>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+    
+      <div class="modal-body p-5 pt-0">
+  
+        <form [formGroup]="popform1" (ngSubmit)="onAjout()">
+
+            <label for="id">ID:</label><br>
+            <input type="text" id="id" name="id" formControlName="id" class="form-control" readonly >
+
+            <label for="nom" class="form-label mt-3">Nom:</label><br>
+            <input type="text" id="nom" name="nom" class="form-control" formControlName="nom" >
+
+            <label for="prenom" class="form-label mt-3">Prenom:</label><br>
+            <input type="text" id="prenom" name="prenom" class="form-control" formControlName="prenom" >
+
+            <label for="email" class="form-label mt-3"> Email:</label><br>
+            <input type="email" id="email" name="email" formControlName="email" class="form-control" >
+                
+            <label for="numeroCarteIdentite" class="form-label mt-3">numéro Carte Identite:</label><br>
+            <input type="text" id="numeroCarteIdentite" name="numeroCarteIdentite" class="form-control" formControlName="numeroCarteIdentite" >
+
+            <label for="motDePasse" class="form-label mt-3">motDePasse</label>
+            <input type="password" class="form-control" id="motDePasse" name="motDePasse" formControlName="motDePasse" >
+  
+          <input type="submit" class="btn btn-success m-3" value="Enregistrer" [disabled]="popform1.invalid">
+          <input type="button" class="btn btn-secondary" value="Annuler" (click)="modal.close()">
+  
+      </form>
+  
+      </div>
+    </div> 
+  </ng-template>

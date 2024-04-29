@@ -32,6 +32,10 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="actif" routerLink="Prolongation_vpn"  *ngIf="gSer.logAccount!= null && gSer.etat == 'gestionnaire' && gSer.etat != 'user'">Demande Prolongation VPN</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="actif" routerLink="Dashboard"  *ngIf="gSer.logAccount!= null && gSer.etat == 'gestionnaire' && gSer.etat != 'user'">Dashboard</a>
+                </li>
                 
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="actif" routerLink="/Mon_Espace" *ngIf="gSer.logAccount!= null && gSer.etat != 'gestionnaire' && gSer.etat == 'user'">Mon Espace</a>

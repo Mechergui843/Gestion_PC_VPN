@@ -1,23 +1,22 @@
     <div *ngIf="lesDemandes.length>0 ;else bloc"> 
         <table class=" table table-stripped">
             <thead>
-                <th scope="col">ID</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Prenom</th>
-                <th scope="col">Date Fin</th>
-                <th scope="col" *ngIf="dispo">Jusqu'à </th>
+                <th scope="col">ID_Demande</th>
+                <th scope="col">Nom Et Prenom</th>
+                <th scope="col">Date Demande</th>
                 <th scope="col">Action</th>
             </thead>
             <tbody>
                 <tr *ngFor="let i of lesDemandes">
                     <td scope="row">{{i.id}}</td>
-                    <td>{{i.nom}}</td>
-                    <td>{{i.prenom}}</td>
-                    <td>{{i.date_fin}}</td>
-                    <td *ngIf="dispo"><input type="date" [(ngModel)]="date_fin"></td>
+                    <td scope="row" class="text-right">
+                        <span *ngFor="let user of users">
+                            {{ user.id == i.id_user ? user.nom + ' ' + user.prenom : '' }}
+                        </span>
+                    </td>
+                    <td scope="row">{{ i.date_demande }}</td>
                     <td><button class="btn btn-danger btn-sm " (click)="onRefuse(i)">Refuser la Demande </button>
-                        <button class="btn btn-success btn-sm m-2" (click)="onAccepte(i)" >Donner l'acces</button>
-                        <button class="btn btn-primary btn-sm" [disabled]="dispo" (click)="onAjoute()" >Choisir la date</button></td>
+                        <button class="btn btn-success btn-sm m-2" (click)="onAccepte(i)" >Accepter la Prolongation d'accés</button>
                 </tr>
             </tbody>
         </table>

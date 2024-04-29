@@ -25,24 +25,24 @@
             <td>{{pc.ram}} Go</td>
             <td>{{pc.stockage}} Go</td>
             <td>{{pc.processeur}}</td>
-            <td>{{pc.date_fin}}</td>
-            <td><button class="btn btn-success btn-sm m-2" [disabled]="prolonge" (click)="onProlonge()" >Demander une Prolongation </button>
-                <button class="btn btn-primary btn-sm" (click)="onUpdate()" [disabled]="update">Pc a besoin d'une Mise à Jour</button></td>
+            <td>{{lesAffectationsPC[0].date_fin}}</td>
+            <td><button class="btn btn-success btn-sm m-2" [disabled]="daysDiff>3" (click)="onProlonge()" >Demander une Prolongation De Prêt De Pc </button>
+                <button class="btn btn-primary btn-sm" (click)="onUpdate()" [disabled]="daysDiff>3">Pc a besoin d'une Mise à Jour</button></td>
         </tr>
     </tbody>
 </table>
-<table class=" table table-stripped" *ngIf="this.user.vpn">
+<table class=" table table-stripped" *ngIf="this.lesAffectationsVpn.length>0">
     <thead>
     <th scope="col">Accés VPN</th>
     <th scope="col">Disponible Jusqu'à</th>
     </thead>
     <tbody>
     <tr>
-        <td scope="row">{{this.user.vpn? 'Oui' : 'Non'}}</td>
-        <td>{{this.user.date_fin}}</td>
-        <td><button class="btn btn-success btn-sm m-2" [disabled]="prolongeVPN" (click)="onProlongeVPN()">Demander une Prolongation </button></td>
+        <td scope="row">{{this.lesAffectationsVpn.length>0?"ouvert":"fermé"}}</td>
+        <td>{{this.lesAffectationsVpn[0].date_fin}}</td>
+        <td><button class="btn btn-success btn-sm m-2" [disabled]="daysDiffVPN>3" (click)="onProlongeVPN()">Demander une Prolongation VPN</button></td>
     </tr>
 </tbody>
 </table>
-<button class="btn btn-success btn-sm m-2" [disabled]="demandePc" (click)="onDemandePC()">Demander un Pc </button>
-<button class="btn btn-success btn-sm m-2" [disabled]="demandeVPN" (click)="onDemandeVPN()">Demander un accés VPN </button>
+<button class="btn btn-success btn-sm m-2" [disabled]="this.lesAffectationsPC.length>0" (click)="onDemandePC()">Demander un Pc </button>
+<button class="btn btn-success btn-sm m-2" [disabled]="this.lesAffectationsVpn.length>0" (click)="onDemandeVPN()">Demander un accés VPN </button>

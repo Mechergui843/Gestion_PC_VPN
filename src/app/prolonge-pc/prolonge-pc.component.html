@@ -1,29 +1,34 @@
-
-<div *ngIf="lesDemandes.length>0 ;else bloc"> 
-    <table class=" table table-stripped">
-        <thead>
-            <th scope="col">ID</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Prenom</th>
-            <th scope="col">Pc Affecté</th>
-            <th scope="col">Action</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let i of lesDemandes;let x=index">
-                <td scope="row">{{i.id}}</td>
-                <td>{{i.nom}}</td>
-                <td>{{i.prenom}}</td>
+<div *ngIf="lesDemandes.length>0 ;else bloc">
+<table class="table table-stripped">
+    <thead>
+        <th scope="col">ID_Demande</th>
+        <th scope="col">Nom Et Prenom</th>
+        <th scope="col">Date Demande</th>
+        <th scope="col">Pc Affecté</th>
+        <th scope="col">Action</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of lesDemandes; let x=index">
+            <td scope="row">{{ i.id }}</td>
+            <td scope="row" class="text-right">
+                <span *ngFor="let user of users">
+                    {{ user.id == i.id_user ? user.nom + ' ' + user.prenom : '' }}
+                </span>
+            </td>
+            <td scope="row">{{ i.date_demande }}</td>
+            <td scope="row">
                 <span *ngFor="let pc of lesPcs">
-                <td>{{pc.id==i.id_pc ? pc.modele:"-"}}</td>                            
-                <td *ngIf="dispo"><input type="date" [(ngModel)]="date_fin"></td>
-            </span>
-                <td><button class="btn btn-danger btn-sm " (click)="onRefuse(lesDemandes[x])">Refuser la Demande </button>
-                    <button class="btn btn-success btn-sm m-2" (click)="onAccepte(lesDemandes[x],lesPcs[x])" >Donner l'acces</button>
-                    <button class="btn btn-primary btn-sm" [disabled]="dispo" (click)="onAjoute()" >Choisir la date</button></td>
-            </tr>
-        </tbody>
-    </table>
-    </div>
-    <ng-template #bloc>
-        <h1>Pas De Demandes De Prolongation De PCs!</h1>
-    </ng-template>
+                    {{ pc.id == i.id_pc ? pc.modele : '' }}
+                </span>
+            </td>
+            <td scope="row">
+                <button class="btn btn-danger btn-sm" (click)="onRefuse(lesDemandes[x])">Refuser la Demande</button>
+                <button class="btn btn-success btn-sm m-2" (click)="onAccepte(lesDemandes[x])">Accepter la Prolongation de Prêt</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<ng-template #bloc>
+    <h1>Pas De Demandes De Prolongation De PCs!</h1>
+</ng-template>

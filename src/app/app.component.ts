@@ -2,20 +2,29 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { GestionService } from './gestion.service';
 import { User } from './classes/user';
 import { Pc } from './classes/pc';
+import { AffectationPc } from './classes/affectation-pc';
+import { AffectationVpn } from './classes/affectation-vpn';
+import { forkJoin } from 'rxjs';
+
+
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit,AfterViewInit{
+export class AppComponent implements OnInit{
   title = 'gestion_pc_vpn';
   constructor(private gSer:GestionService){}
   uTab:User[]=[];
   uTab1:User[]=[];
+  afPc!:AffectationPc[];
+  afVpn!:AffectationVpn[];
   pc!:Pc
 
   ngOnInit(): void {
+    
     this.onMettreàZero();
     if(localStorage.getItem('id')){
       if(localStorage.getItem('etat')=='user'){
@@ -36,16 +45,50 @@ export class AppComponent implements OnInit,AfterViewInit{
     }
      
   }
-  ngAfterViewInit(): void {
-    
+
+  onMettreàZero() {
+    let today = new Date();
+
+    forkJoin({
+      affectationsPc: this.gSer.getAffectationsPc(),
+      affectationsVpn: this.gSer.getAffectationsVpn()
+    }).subscribe(({ affectationsPc, affectationsVpn }) => {
+      this.afPc = affectationsPc;
+      this.afVpn = affectationsVpn;
+      
+      console.log(this.afPc);
+      console.log(this.afVpn);
+
+      if (this.afPc) {
+        for (let i = 0; i < this.afPc.length; i++) {
+          let finalDay = new Date(this.afPc[i].date_fin).getTime();
+          if (today.getTime() >= finalDay){
+          this.gSer.getPcById(this.afPc[i].id_pc).subscribe(res=>{this.pc=res});
+          this.pc.dispo=true;
+          this.gSer.modifyPc(this.pc).subscribe();
+            this.gSer.deleteAffectationPc(this.afPc[i].id).subscribe();      
+        }
+      }
+      }
+
+      if (this.afVpn) {
+        for (let i = 0; i < this.afVpn.length; i++) {
+          let finalDay = Date.parse(this.afVpn[i].date_fin.toString());
+          if (today.getTime() >= finalDay)
+              this.gSer.deleteAffectationVpn(this.afVpn[i].id).subscribe();
+        }
+      }
+    });
   }
-  onMettreàZero(){
-    debugger
-    let today=new Date();
+
+  
+
+
+
+    /*
     this.gSer.getUsers().subscribe(
       data=>{
         this.uTab1=data;
-        console.log(data)
         this.uTab1.forEach(element => {
           let finalDay=new Date(element.date_fin).getTime();
           if(today.getTime()>=finalDay){
@@ -60,7 +103,6 @@ export class AppComponent implements OnInit,AfterViewInit{
               res=>{
                 element.id_pc=0;
                 let pc=res;
-                console.log(pc)
                 let finalDayPc=new Date(pc.date_fin).getTime();
                 if(finalDayPc<=today.getTime()){
                   pc.date_deb="";
@@ -75,7 +117,6 @@ export class AppComponent implements OnInit,AfterViewInit{
         });
       }
     )
-    
+    */
     
   }
-}
